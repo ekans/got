@@ -30,7 +30,7 @@ func CheckGitRepos(repos []string, err error) ([]string, error) {
 	}
 
 	for i, repo := range repos {
-		repos[i] = strings.TrimRight(repo, "/.git")
+		repos[i] = strings.TrimSuffix(repo, "/.git")
 	}
 
 	return repos, nil
