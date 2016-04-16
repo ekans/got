@@ -1,15 +1,15 @@
 package terminal
 
 import (
-	"testing"
-	"reflect"
 	"github.com/ekans/got/core"
+	"reflect"
+	"testing"
 )
 
 func TestParseArgs(t *testing.T) {
 	cases := []testDataParseArgs{{
-		in: []string{"st"},
-		globalCmd: core.GitCmd{Cmd:[]string{"st"}},
+		in:        []string{"st"},
+		globalCmd: core.GitCmd{Cmd: []string{"st"}},
 	}}
 
 	for _, data := range cases {
@@ -23,9 +23,8 @@ func TestParseArgs(t *testing.T) {
 	}
 
 	cases = []testDataParseArgs{{
-		in: []string{"@REPO1", "st"},
-		specificCmds: map[string]core.GitCmd{"@REPO1": core.GitCmd{Cmd:[]string{"st"}, Repo:"@REPO1"},
-		},
+		in:           []string{"@REPO1", "st"},
+		specificCmds: map[string]core.GitCmd{"@REPO1": core.GitCmd{Cmd: []string{"st"}, Repo: "@REPO1"}},
 	}}
 
 	for _, data := range cases {
@@ -38,11 +37,11 @@ func TestParseArgs(t *testing.T) {
 		}
 	}
 	cases = []testDataParseArgs{{
-		in: []string{"br -a", "@REPO1", "st -s", "@REPO2", "ll ..origin/R7S1_dev"},
-		globalCmd: core.GitCmd{Cmd:[]string{"br -a"}},
+		in:        []string{"br -a", "@REPO1", "st -s", "@REPO2", "ll ..origin/master"},
+		globalCmd: core.GitCmd{Cmd: []string{"br -a"}},
 		specificCmds: map[string]core.GitCmd{
-			"REPO1": core.GitCmd{Cmd:[]string{"st -s"}, Repo:"REPO1"},
-			"REPO2": core.GitCmd{Cmd:[]string{"ll ..origin/R7S1_dev"}, Repo:"REPO2"},
+			"REPO1": core.GitCmd{Cmd: []string{"st -s"}, Repo: "REPO1"},
+			"REPO2": core.GitCmd{Cmd: []string{"ll ..origin/master"}, Repo: "REPO2"},
 		},
 	}}
 
