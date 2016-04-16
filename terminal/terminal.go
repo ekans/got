@@ -1,12 +1,12 @@
 package terminal
 
 import (
-	"path/filepath"
+	"fmt"
 	"github.com/ekans/got/core"
 	"io"
-	"os/exec"
 	"os"
-	"fmt"
+	"os/exec"
+	"path/filepath"
 	"strings"
 )
 
@@ -73,17 +73,17 @@ func parseArgs(args []string) (globalCmd core.GitCmd, specificGitCmds map[string
 	}
 
 	if posAt == -1 {
-		globalCmd = core.GitCmd{Cmd:args[:]}
+		globalCmd = core.GitCmd{Cmd: args[:]}
 		return
 	}
 
-	globalCmd = core.GitCmd{Cmd:args[:posAt]}
+	globalCmd = core.GitCmd{Cmd: args[:posAt]}
 
 	specificGitCmds = make(map[string]core.GitCmd)
 	var currentRepo string
 	for _, arg := range args[posAt:] {
 
-		switch  {
+		switch {
 		case strings.HasPrefix(arg, "@"):
 			currentRepo = strings.SplitAfter(arg, "@")[1]
 			specificGitCmds[currentRepo] = core.GitCmd{Repo: currentRepo}

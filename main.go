@@ -1,10 +1,10 @@
 package main
 
 import (
-	"os"
+	"github.com/ekans/got/core"
 	"github.com/ekans/got/server"
 	"github.com/ekans/got/terminal"
-	"github.com/ekans/got/core"
+	"os"
 )
 
 // Execute commands across some Git repos in parallel.
@@ -27,7 +27,7 @@ func main() {
 
 func argsAreValid(args []string) bool {
 	if len(args) <= 1 {
-		return false;
+		return false
 	}
 	return len(args) >= 2 || args[1] == server.ServerOption
 }

@@ -1,9 +1,9 @@
 package core
 
 import (
-	"io"
-	"fmt"
 	"errors"
+	"fmt"
+	"io"
 	"strings"
 )
 
@@ -66,4 +66,3 @@ EXAMPLES
        got checkout A_branch @REPO1 checkout Another_branch
           Run git checkout A_branch on all Git repos except REPO01 and git checkout Another_branch on REPO1
 `
-
