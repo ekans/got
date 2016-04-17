@@ -1,5 +1,10 @@
 ^(｀（ ● ●）´ )^
 
+Got
+===
+
+[![Build Status](https://travis-ci.org/ekans/got.svg?branch=master)](https://travis-ci.org/ekans/got)
+
 A tool for managing simultaneously several git repositories.
 
 Some typical usages:
