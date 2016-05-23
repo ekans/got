@@ -13,6 +13,7 @@ import (
 func TerminalMode(gotArgs []string) {
 
 	r, w := io.Pipe()
+
 	// -F : Causes less to automatically exit if the entire file can be displayed on the first screen.
 	// -R : Like -r, but only ANSI "color" escape sequences are output in "raw" form.
 	// -S : Causes  lines  longer  than  the  screen width to be chopped rather than folded.
@@ -21,10 +22,15 @@ func TerminalMode(gotArgs []string) {
 	pager.Stdin = r
 	pager.Stdout = os.Stdout
 	pager.Stderr = os.Stderr
+
+	if ok := core.CheckCommand(os.Stdout, gotArgs[0]); !ok {
+		return
+	}
+
 	c := make(chan struct{})
 	go func() {
-		defer close(c)
 		pager.Run()
+		close(c)
 	}()
 
 	terminalHandler(w, gotArgs)

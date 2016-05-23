@@ -1,12 +1,12 @@
 package server
 
 import (
-	"net/http"
-	"log"
+	"fmt"
 	"github.com/ekans/got/core"
+	"log"
+	"net/http"
 	"path/filepath"
 	"strings"
-	"fmt"
 )
 
 const ServerOption string = "--server"
@@ -22,6 +22,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	P_HOME_PATH := params.Get("home")
 	P_CMD := params.Get("cmd")
 	P_REPOS := params.Get("repos")
+
+	if ok := core.CheckCommand(w, P_CMD); !ok {
+		return
+	}
 
 	if P_HOME_PATH != "" && P_CMD != "" {
 
@@ -39,7 +43,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		for _, repo := range repos {
-			cmdByRepo[repo] = core.GitCmd{Repo:repo, Cmd:[]string{P_CMD}}
+			cmdByRepo[repo] = core.GitCmd{Repo: repo, Cmd: []string{P_CMD}}
 		}
 		core.LaunchCmdAndWriteResult(w, cmdByRepo)
 

@@ -14,6 +14,7 @@ func main() {
 		core.GotMan(os.Stdout)
 		return
 	}
+
 	//Remove first argument which is "got"
 	gotArgs := os.Args[1:]
 
@@ -26,8 +27,10 @@ func main() {
 }
 
 func argsAreValid(args []string) bool {
+
 	if len(args) <= 1 {
 		return false
 	}
-	return len(args) >= 2 || args[1] == server.ServerOption
+
+	return len(args) >= 2
 }
