@@ -40,7 +40,7 @@ func TerminalMode(gotArgs []string) {
 }
 
 func terminalHandler(w io.Writer, gotArgs []string) {
-	globalCmd, localCmdByRepo := parseArgs(gotArgs)
+	globalCmd, localCmdByRepo := parseTerminalArgs(gotArgs)
 
 	repos, err := listGitRepos()
 	if err != nil {
@@ -68,7 +68,7 @@ func terminalHandler(w io.Writer, gotArgs []string) {
 	core.LaunchCmdAndWriteResult(w, cmdByRepo)
 }
 
-func parseArgs(args []string) (globalCmd core.GitCmd, specificGitCmds map[string]core.GitCmd) {
+func parseTerminalArgs(args []string) (globalCmd core.GitCmd, specificGitCmds map[string]core.GitCmd) {
 
 	var posAt = -1
 	for i, arg := range args {

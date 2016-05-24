@@ -13,7 +13,7 @@ func TestParseArgs(t *testing.T) {
 	}}
 
 	for _, data := range cases {
-		globalCmd, specificCmds := parseArgs(data.in)
+		globalCmd, specificCmds := parseTerminalArgs(data.in)
 		if globalCmd.Repo != data.globalCmd.Repo || !reflect.DeepEqual(globalCmd.Cmd, data.globalCmd.Cmd) {
 			t.Errorf("parseArgs(%s) == (%s, %s), expected (%s, %s)", data.in, globalCmd, specificCmds, data.globalCmd, data.specificCmds)
 		}
@@ -28,7 +28,7 @@ func TestParseArgs(t *testing.T) {
 	}}
 
 	for _, data := range cases {
-		globalCmd, specificCmds := parseArgs(data.in)
+		globalCmd, specificCmds := parseTerminalArgs(data.in)
 		if globalCmd.Repo != "" || len(globalCmd.Cmd) != 0 {
 			t.Errorf("parseArgs(%s) == (%s, %s), expected (%s, %s)", data.in, globalCmd, specificCmds, data.globalCmd, data.specificCmds)
 		}
@@ -46,7 +46,7 @@ func TestParseArgs(t *testing.T) {
 	}}
 
 	for _, data := range cases {
-		globalCmd, specificCmds := parseArgs(data.in)
+		globalCmd, specificCmds := parseTerminalArgs(data.in)
 		if globalCmd.Repo != data.globalCmd.Repo || !reflect.DeepEqual(globalCmd.Cmd, data.globalCmd.Cmd) {
 			t.Errorf("parseArgs(%s) == (%s, %s), expected (%s, %s)", data.in, globalCmd, specificCmds, data.globalCmd, data.specificCmds)
 		}
