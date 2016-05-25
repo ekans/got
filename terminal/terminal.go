@@ -109,5 +109,10 @@ func parseTerminalArgs(args []string) (globalCmd core.GitCmd, specificGitCmds ma
 }
 
 func listGitRepos() ([]string, error) {
-	return core.CheckGitRepos(filepath.Glob("*/.git"))
+	repos, err := filepath.Glob("*/.git")
+	if err != nil {
+		return core.CheckGitRepos(repos)
+	}
+
+	return nil, err
 }

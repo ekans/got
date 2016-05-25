@@ -33,7 +33,16 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		var repos []string
 
 		if P_REPOS == "" {
-			repos, _ = core.CheckGitRepos(filepath.Glob(P_HOME_PATH + "/*/.git"))
+			reposGlob, err := filepath.Glob(P_HOME_PATH + "/*/.git")
+			if err != nil {
+				http.Error(w, err.Error(), 500)
+				return
+			}
+			repos, err = core.CheckGitRepos(reposGlob)
+			if err != nil {
+				http.Error(w, err.Error(), 500)
+				return
+			}
 
 		} else {
 			repos = strings.Split(P_REPOS, ",")
