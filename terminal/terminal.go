@@ -23,7 +23,7 @@ func TerminalMode(gotArgs []string) {
 	pager.Stdout = os.Stdout
 	pager.Stderr = os.Stderr
 
-	if ok := core.CheckCommand(os.Stdout, gotArgs[0]); !ok {
+	if ok := core.CommandIsAllowed(os.Stdout, gotArgs[0]); !ok {
 		return
 	}
 

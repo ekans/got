@@ -23,7 +23,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	P_CMD := params.Get("cmd")
 	P_REPOS := params.Get("repos")
 
-	if ok := core.CheckCommand(w, P_CMD); !ok {
+	if ok := core.CommandIsAllowed(w, P_CMD); !ok {
 		return
 	}
 

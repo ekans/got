@@ -36,7 +36,7 @@ func CheckGitRepos(repos []string) ([]string, error) {
 }
 
 // Check if cmd is a allowed command
-func CheckCommand(w io.Writer, cmd string) bool {
+func CommandIsAllowed(w io.Writer, cmd string) bool {
 
 	switch cmd {
 	case "status":

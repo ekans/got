@@ -34,7 +34,7 @@ func TestCheckCommand(t *testing.T) {
 		{"status", true},
 	}
 	for _, data := range cases {
-		result := CheckCommand(os.Stdout, data.in)
+		result := CommandIsAllowed(os.Stdout, data.in)
 		if result != data.result {
 			t.Errorf("argsAreNotValid(%s) == %t, expected %t", data.in, result, data.result)
 		}
